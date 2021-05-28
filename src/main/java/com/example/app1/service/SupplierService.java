@@ -1,6 +1,7 @@
-package com.example.app1;
+package com.example.app1.service;
 
 
+import com.example.app1.dto.Message;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
