@@ -1,0 +1,11 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    stream:
+      bindings:
+        input-in-0:
+          destination: fromSecond
+        output-out-0:
+          destination: fromFirst
