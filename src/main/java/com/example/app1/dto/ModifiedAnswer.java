@@ -1,6 +1,6 @@
 package com.example.app1.dto;
 
-import com.example.app1.dto.State;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

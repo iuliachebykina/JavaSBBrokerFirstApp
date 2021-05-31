@@ -17,7 +17,6 @@ public class UserController {
     private final ConsumerService consumerService;
 
 
-
     public UserController(SupplierService supplierService, ConsumerService consumerService) {
         this.supplierService = supplierService;
         this.consumerService = consumerService;
