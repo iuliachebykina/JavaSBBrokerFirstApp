@@ -18,17 +18,15 @@ public class ConsumerService {
 
     @Bean
     public Consumer<Answer> input() {
-        return answer -> {
-            try {
-                listen(answer);
-            } catch (JsonProcessingException e) {
-                log.error(e.getMessage());
-            }
-        };
+        return this::listen;
     }
 
-    public void listen(Answer answer) throws JsonProcessingException {
-        log.info("Получено " + mapper.writeValueAsString(answer));
+    public void listen(Answer answer) {
+        try {
+            log.info("Получено " + mapper.writeValueAsString(answer));
+        } catch (JsonProcessingException e) {
+            log.error(e.getMessage());
+        }
         var modifiedAnswer = new ModifiedAnswer(answer.getId(), answer.getState(), answer.getTime());
         System.out.println(modifiedAnswer);
     }
