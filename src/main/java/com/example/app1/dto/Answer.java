@@ -10,7 +10,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-@JsonFilter("myFilter")
+/*@JsonFilter("myFilter")*/
 public class Answer {
     private String id;
     private State state;

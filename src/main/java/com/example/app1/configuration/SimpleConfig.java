@@ -10,7 +10,7 @@ import java.util.concurrent.CountDownLatch;
 public class SimpleConfig {
 
     @Bean
-    public CountDownLatch countDownLatch(){
+    public CountDownLatch waitAnswer(){
         return new CountDownLatch(1);
     }
 }

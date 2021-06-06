@@ -5,7 +5,6 @@ import com.example.app1.dto.ModifiedAnswer;
 import com.example.app1.dto.User;
 import com.example.app1.service.ConsumerService;
 import com.example.app1.service.SupplierService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,7 +28,7 @@ public class UserController {
     }
 
     @PostMapping("/user")
-    public ModifiedAnswer test(@RequestBody User user) throws JsonProcessingException, InterruptedException {
+    public ModifiedAnswer test(@RequestBody User user) throws InterruptedException {
         int id = 1234;
         var message = new Message(id, user.getName(), user.getPhoneNumber());
         supplierService.output(message);

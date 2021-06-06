@@ -21,8 +21,12 @@ public class SupplierService {
         this.streamBridge = streamBridge;
     }
 
-    public void output(Message message) throws JsonProcessingException {
+    public void output(Message message){
         streamBridge.send("output-out-0", MessageBuilder.withPayload(message).build());
-        log.info("Отправлено " + mapper.writeValueAsString(message));
+        try {
+            log.info("Отправлено " + mapper.writeValueAsString(message));
+        } catch (JsonProcessingException e) {
+            log.error(e.getMessage());
+        }
     }
 }
