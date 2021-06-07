@@ -18,12 +18,8 @@ import java.util.function.Consumer;
 public class ConsumerService {
     private static final Logger log = LoggerFactory.getLogger(ConsumerService.class);
     private final ObjectMapper mapper = new ObjectMapper();
-    private final CountDownLatch latch;
+    private CountDownLatch countDownLatch;
     private ModifiedAnswer modifiedAnswer;
-
-    public ConsumerService(CountDownLatch latch) {
-        this.latch = latch;
-    }
 
 
     @Bean
@@ -40,7 +36,7 @@ public class ConsumerService {
         }
         try{
             modifiedAnswer = new ModifiedAnswer(answer.getId(), answer.getState(), answer.getTime());//не уверена, как лучше делать
-            latch.countDown();
+            countDownLatch.countDown();
 
         } catch (Exception e) {
             log.error(e.getMessage());

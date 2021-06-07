@@ -17,13 +17,11 @@ public class UserController {
 
     private final SupplierService supplierService;
     private final ConsumerService consumerService;
-    private final CountDownLatch cdl;
 
 
-    public UserController(SupplierService supplierService, ConsumerService consumerService, CountDownLatch cdl) {
+    public UserController(SupplierService supplierService, ConsumerService consumerService) {
         this.supplierService = supplierService;
         this.consumerService = consumerService;
-        this.cdl = cdl;
     }
 
     @PostMapping("/user")
@@ -31,8 +29,9 @@ public class UserController {
         var id = 1234;
         var message = new Message(id, user.getName(), user.getPhoneNumber());
         supplierService.output(message);
-        cdl.await();
+        consumerService.setCountDownLatch(new CountDownLatch(1));
         consumerService.input();
+        consumerService.getCountDownLatch().await();
         return consumerService.getModifiedAnswer();
     }
 }
