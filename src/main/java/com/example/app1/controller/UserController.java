@@ -5,7 +5,6 @@ import com.example.app1.dto.ModifiedAnswer;
 import com.example.app1.dto.User;
 import com.example.app1.service.ConsumerService;
 import com.example.app1.service.SupplierService;
-import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,15 +20,15 @@ public class UserController {
     private final CountDownLatch cdl;
 
 
-    public UserController(SupplierService supplierService, ApplicationContext context) {
+    public UserController(SupplierService supplierService, ConsumerService consumerService, CountDownLatch cdl) {
         this.supplierService = supplierService;
-        this.cdl = context.getBean(CountDownLatch.class);
-        this.consumerService = context.getBean(ConsumerService.class);
+        this.consumerService = consumerService;
+        this.cdl = cdl;
     }
 
     @PostMapping("/user")
     public ModifiedAnswer test(@RequestBody User user) throws InterruptedException {
-        int id = 1234;
+        var id = 1234;
         var message = new Message(id, user.getName(), user.getPhoneNumber());
         supplierService.output(message);
         cdl.await();

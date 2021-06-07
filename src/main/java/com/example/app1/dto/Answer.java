@@ -18,7 +18,3 @@ public class Answer {
     private String message;
 }
 
-enum State {
-    VALID,
-    INVALID
-}
