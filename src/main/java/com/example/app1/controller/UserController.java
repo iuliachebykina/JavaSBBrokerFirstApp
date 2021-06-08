@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Random;
+
 import java.util.concurrent.CountDownLatch;
 
 
@@ -18,6 +18,7 @@ public class UserController {
 
     private final SupplierService supplierService;
     private final ConsumerService consumerService;
+    private long id = 0;
 
 
     public UserController(SupplierService supplierService, ConsumerService consumerService) {
@@ -27,7 +28,7 @@ public class UserController {
 
     @PostMapping("/user")
     public ModifiedAnswer test(@RequestBody User user) throws InterruptedException {
-        int id = Math.abs(new Random().nextInt() % 10000); // как я поняла, id это вписываемые данные (типо номер дока), иначе генерировался бы в базе
+        id ++;
         var message = new Message(id, user.getName(), user.getPhoneNumber());
         supplierService.output(message);
         consumerService.setCountDownLatch(new CountDownLatch(1));

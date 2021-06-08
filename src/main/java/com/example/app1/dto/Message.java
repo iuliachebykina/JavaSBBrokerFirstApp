@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Message {
-    private int id;
+    private long id;
     private String name;
     private String phoneNumber;
 

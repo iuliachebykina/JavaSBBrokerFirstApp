@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class ModifiedAnswer {
-    private String id;
+    private Long id;
     private State state;
     private String time;
 }

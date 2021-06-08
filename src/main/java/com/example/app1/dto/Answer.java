@@ -12,7 +12,7 @@ import lombok.Data;
 @AllArgsConstructor
 /*@JsonFilter("myFilter")*/
 public class Answer {
-    private String id;
+    private Long id;
     private State state;
     private String time;
     private String message;
