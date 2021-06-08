@@ -30,7 +30,6 @@ public class UserController {
         var message = new Message(id, user.getName(), user.getPhoneNumber());
         supplierService.output(message);
         consumerService.setCountDownLatch(new CountDownLatch(1));
-        consumerService.input();
         consumerService.getCountDownLatch().await();
         return consumerService.getModifiedAnswer();
     }
